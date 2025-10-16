@@ -1,3 +1,5 @@
+import {machineservices} from "./services.js";
+
 export const getallmachinecontroller = (req, res) => {
 	res.send('get all machines');
 };

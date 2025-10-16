@@ -1,13 +1,13 @@
 import express from 'express';
-import { getallusercontroller, getuserbyidcontroller, postusercontroller, putusercontroller, deletusercontroller } from './controllers.js';
+import { GetallUserController, GetUserbyidController, CreateUserController, UpdateUserController, DeletUserController } from './controllers.js';
 
 const router = express.Router();
 
 
-router.get('/', getallusercontroller);
-router.get('/', getuserbyidcontroller)
-router.post('/', postusercontroller);
-router.put('/', putusercontroller);
-router.delete('/', deletusercontroller);
+router.get('/', GetallUserController);
+router.get('/', GetUserbyidController)
+router.post('/', CreateUserController);
+router.put('/', UpdateUserController);
+router.delete('/', DeletUserController);
 
 export default router;

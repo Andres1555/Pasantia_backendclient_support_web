@@ -1,12 +1,12 @@
 import express from 'express';
-import { getallreportcontroller,postreportcontroller, putreportcontroller, deletreportcontroller } from './controllers.js';
+import { GetallReportController,CreateReportController,UpdateReportController,DeleteReportController } from './controllers.js';
 
 const router = express.Router();
 
 
-router.get('/', getallreportcontroller);
-router.post('/', postreportcontroller);
-router.put('/', putreportcontroller);
-router.delete('/', deletreportcontroller);
+router.get('/', GetallReportController);
+router.post('/', CreateReportController);
+router.put('/', UpdateReportController);
+router.delete('/', DeleteReportController);
 
 export default router;
