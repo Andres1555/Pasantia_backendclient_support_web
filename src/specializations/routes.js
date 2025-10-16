@@ -6,7 +6,7 @@ const router = express.Router();
 
 router.get('/', getallspeccontroller);
 router.post('/', postspeccontroller);
-router.put('/:', putspeccontroller);
-router.delete('/:', deletspeccontroller);
+router.put('/', putspeccontroller);
+router.delete('/', deletspeccontroller);
 
 export default router;

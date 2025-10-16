@@ -6,7 +6,7 @@ const router = express.Router();
 
 router.get('/', getallreportuserontroller);
 router.post('/', postreportuserontroller);
-router.put('/:', putreportuserontroller);
-router.delete('/:',deletereportuserontroller);
+router.put('/', putreportuserontroller);
+router.delete('/',deletereportuserontroller);
 
 export default router;
