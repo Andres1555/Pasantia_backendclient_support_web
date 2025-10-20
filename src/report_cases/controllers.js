@@ -3,8 +3,8 @@ import {ReportcaseService} from "./services.js";
 
 export const GetallReportcaseController = async (req, res) => {
   try {
-	const report = await ReportcaseService.getAll();
-	res.status(200).json(users);
+	const reportcase = await ReportcaseService.getAll();
+	res.status(200).json(reportcase);
   } catch (error) {
 	console.error("Error en el controlador", error.message);
 	res
@@ -15,9 +15,9 @@ export const GetallReportcaseController = async (req, res) => {
 
 export const CreateReportcaseController = async (req, res) => {
   try {
-	const { } = req.body;
+	const { id_user,id_report,caso_tecnico,resolucion,tiempo } = req.body;
 
-	if (!caso ) {
+	if (!id_user || !id_report || !caso_tecnico || !resolucion || !tiempo  ) {
 	  return res.status(400).json({
 		message:
 		  "Todos los campos son obligatorios",
@@ -25,15 +25,15 @@ export const CreateReportcaseController = async (req, res) => {
 	}
 
 	if (
-	  typeof caso !== "string" ||typeof estado !== "string" ||typeof descripcion !== "string" ||typeof nombre_natural !== "string" ||typeof clave_natural !== "string"||typeof clave_win !== "string") {
+	  typeof id_user !== "number"||typeof id_report !== "number"||typeof caso_tecnico !== "string"||typeof resolucion !== "string"||typeof tiempo !== "time") {
+
 	  return res.status(400).json({
 		message:
-		  "los campos tienen que ser un tipo de dato valido",
-	  });
+		"los campos tienen que ser un tipo de dato valido",});
 	}
 
-	await ReportcaseService.create({ });
-	res.status(201).json({ message: "reporte creado correctamente" });
+	await ReportcaseService.create({ id_user,id_report,caso_tecnico,resolucion,tiempo});
+	res.status(201).json({ message: "reporte de caso creado correctamente" });
   } catch (error) {
 	console.error("Error:", error.message);
 	res
@@ -61,7 +61,7 @@ export const UpdateReportcaseController= async (req, res) => {
 	  });
 	}
 
-	await ReportcaseService.update({});
+	await ReportcaseService.update({caso_tecnico,resolucion,tiempo});
 	res.status(200).json({ message: "reporte actualizado correctamente" });
   } catch (error) {
 	console.error("Error en el controlador:", error.message);

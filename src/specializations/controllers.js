@@ -1,15 +1,100 @@
-export const getallspeccontroller = (req, res) => {
-	res.send('get all specializations');
+import {SpecializationseService} from "./services.js";
+
+
+export const GetallSpecController = async (req, res) => {
+  try {
+	const specialization = await SpecializationseService.getAll();
+	res.status(200).json(specialization);
+  } catch (error) {
+	console.error("Error en el controlador", error.message);
+	res
+	  .status(500)
+	  .json({ message: "Error al obtener todas las especializaciones", error: error.message });
+  }
 };
 
-export const postspeccontroller = (req, res) => {
-	res.send('create specialization');
-};
+export const CreateSpecController = async (req, res) => {
+  try {
+	const { nombre } = req.body;
 
-export const putspeccontroller = (req, res) => {
-	res.send('update specialization');
-};
+	if (!nombre ) {
+	  return res.status(400).json({
+		message:
+		  "Todos los campos son obligatorios",
+	  });
+	}
 
-export const deletspeccontroller = (req, res) => {
-	res.send('delete specialization');
+	if (
+	  typeof nombre !== "string") {
+
+	  return res.status(400).json({
+		message:
+		"los campos tienen que ser un tipo de dato valido",});
+	}
+
+	await ReportcaseService.create({ nombre});
+	res.status(201).json({ message: "especializacion creado correctamente" });
+  } catch (error) {
+	console.error("Error:", error.message);
+	res
+	  .status(500)
+	  .json({ message: "Error al crear la especializacion", error: error.message });
+  }
+};
+export const UpdateSpecController= async (req, res) => {
+  try {
+	
+	const { nombre} = req.body;
+
+	if (!nombre) {
+	  return res.status(400).json({
+		message:
+		  "Todos los campos son obligatorios",
+	  });
+	}
+
+	if (
+	 typeof nombre !== "string" ) {
+	  return res.status(400).json({
+		message:
+		  "los campos tienen que ser un tipo de dato valido",
+	  });
+	}
+
+	await ReportcaseService.update({nombre});
+	res.status(200).json({ message: "especializacion actualizado correctamente" });
+  } catch (error) {
+	console.error("Error en el controlador:", error.message);
+	res
+	  .status(500)
+	  .json({
+		message: "Error al actualizar la especializacion",
+		error: error.message,
+	  });
+  }
+};
+export const DeleteSpecController= async (req, res) => {
+  try {
+	const { id } = req.params;
+
+	if (!id) {
+	  return res.status(400).json({ message: "El campo es obligatorio" });
+	}
+
+	const idnumber = Number(id);
+
+	if (isNaN(idnumber)) {
+	  return res
+		.status(400)
+		.json({ message: "id no valida" });
+	}
+
+	await ReportcaseService.delete(idnumber);
+	res.status(200).json({ message: "" });
+  } catch (error) {
+	console.error("Error:", error.message);
+	res
+	  .status(500)
+	  .json({ message: "Error no se pudo eliminar la especializacion", error: error.message });
+  }
 };

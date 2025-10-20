@@ -4,7 +4,7 @@ import {ReportService} from "./services.js";
 export const GetallReportController = async (req, res) => {
   try {
 	const report = await ReportService.getAll();
-	res.status(200).json(users);
+	res.status(200).json(report);
   } catch (error) {
 	console.error("Error en el controlador", error.message);
 	res
@@ -25,14 +25,14 @@ export const CreateReportController = async (req, res) => {
 	}
 
 	if (
-	  typeof caso !== "string" ||typeof estado !== "string" ||typeof descripcion !== "string" ||typeof nombre_natural !== "string" ||typeof clave_natural !== "string"||typeof clave_win !== "string"||typeof fecha !== "date") {
+	  typeof caso !== "string" ||typeof id_maquina !== "number"||typeof estado !== "string" ||typeof descripcion !== "string" ||typeof nombre_natural !== "string" ||typeof clave_natural !== "string"||typeof clave_win !== "string"||typeof fecha !== "date") {
 	  return res.status(400).json({
 		message:
 		  "los campos tienen que ser un tipo de dato valido",
 	  });
 	}
 
-	await ReportService.create({ caso,area,estado,descripcion,nombre_natural,clave_natural,clave_win,fecha });
+	await ReportService.create({ caso,id_maquina,area,estado,descripcion,nombre_natural,clave_natural,clave_win,fecha });
 	res.status(201).json({ message: "reporte creado correctamente" });
   } catch (error) {
 	console.error("Error:", error.message);

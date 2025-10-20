@@ -1,12 +1,11 @@
 import express from 'express';
-import { getallspecuserontroller,postspecuserontroller, putspecuserontroller, deletespecuserontroller } from './controllers.js';
+import { GetAllSpecuserController,CreateSpecuserController,DeleteSpecuserController } from './controllers.js';
 
-const router = express.Router();
+const router = express.Router()
 
 
-router.get('/', getallspecuserontroller);
-router.post('/', postspecuserontroller);
-router.put('/', putspecuserontroller);
-router.delete('/',deletespecuserontroller);
+router.get('/', GetAllSpecuserController);
+router.post('/', CreateSpecuserController);
+router.delete('/',DeleteSpecuserController);
 
 export default router;
