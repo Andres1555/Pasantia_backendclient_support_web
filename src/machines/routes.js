@@ -1,12 +1,12 @@
 import express from 'express';
-import { getallmachinecontroller,postmachinecontroller, putmachinecontroller, deletemachinecontroller } from './controllers.js';
+import { CreateMachineController, DeleteMachineController, GetallMachineController, UpdateMachineController } from './controllers.js';
 
 const router = express.Router();
 
 
-router.get('/', getallmachinecontroller);
-router.post('/', postmachinecontroller);
-router.put('/', putmachinecontroller);
-router.delete('/', deletemachinecontroller);
+router.get('/', GetallMachineController);
+router.post('/', CreateMachineController);
+router.put('/', UpdateMachineController);
+router.delete('/', DeleteMachineController);
 
 export default router;
