@@ -32,7 +32,7 @@ export const CreateSpecController = async (req, res) => {
 		"los campos tienen que ser un tipo de dato valido",});
 	}
 
-	await ReportcaseService.create({ nombre});
+	await SpecializationseService.create({ nombre});
 	res.status(201).json({ message: "especializacion creado correctamente" });
   } catch (error) {
 	console.error("Error:", error.message);
@@ -61,7 +61,7 @@ export const UpdateSpecController= async (req, res) => {
 	  });
 	}
 
-	await ReportcaseService.update({nombre});
+	await SpecializationseService.update({nombre});
 	res.status(200).json({ message: "especializacion actualizado correctamente" });
   } catch (error) {
 	console.error("Error en el controlador:", error.message);

@@ -1,9 +1,14 @@
-import { createClient } from "@libsql/client";
-import "dotenv/config"; 
+import {sequelize} from 'sequelize';
 
-const db = createClient({
-  url: process.env.TURSO_BD,
-  authToken: process.env.TURSO_TOKEN,
+const sequelize = new Sequelize({
+  dialect: 'sqlite',
+  storage: './database.sqlite', 
+  logging: false
 });
 
-export default db;
+export async function initDatabase() {
+  await sequelize.sync({ alter: true });
+  console.log('Base de datos sincronizada con Sequelize');
+}
+
+export default sequelize;
