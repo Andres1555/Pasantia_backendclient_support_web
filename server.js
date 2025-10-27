@@ -9,6 +9,7 @@ import routesreport_users from "./src/report_users/routes.js";
 import routesmachines from "./src/machines/routes.js";
 import routesspec from "./src/specializations/routes.js";
 import routesspec_users from "./src/specialization_users/routes.js";
+import { setupDatabase } from "./config/db.js";
 
 
 const app = express();
@@ -17,17 +18,35 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-app.use("api/users",routesusers)
-app.use("api/report",routesreport)
-app.use("api/report_cases",routesreportcase)
-//app.use("api/auth",routesauth)
-app.use("api/report_users",routesreport_users)
-app.use("api/machines",routesmachines)
-app.use("api/specializations",routesspec)
-app.use("api/specialization_users",routesspec_users)
+app.use("/api/users", routesusers);
+app.use("/api/report", routesreport);
+app.use("/api/report_cases", routesreportcase);
+//app.use("/api/auth",routesauth)
+app.use("/api/report_users", routesreport_users);
+app.use("/api/machines", routesmachines);
+app.use("/api/specializations", routesspec);
+app.use("/api/specialization_users", routesspec_users);
 
 
 const PORT = process.env.PORT || 8080;
-app.listen(PORT, () => {
-    console.log(`Servidor corriendo en http://localhost:${PORT}`);
-});
+
+const start = async () => {
+    try {
+        
+        if (process.env.SKIP_DB_SETUP !== '1') {
+            await setupDatabase();
+            console.log('Base de datos sincronizada');
+        } else {
+            console.log('no se pudo crear la base de datos');
+        }
+
+        app.listen(PORT, () => {
+            console.log(`Servidor corriendo en http://localhost:${PORT}`);
+        });
+    } catch (err) {
+        console.error('Error al inicializar iniciar el servidor:', err);
+        process.exit(1);
+    }
+};
+
+start();

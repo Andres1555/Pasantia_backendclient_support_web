@@ -2,12 +2,12 @@ import { Sequelize, DataTypes } from 'sequelize';
 
 const sequelize = new Sequelize({
   dialect: 'sqlite',
-  storage: './database.sqlite', 
+  storage: './Pasantiatest.sqlite', 
   logging: false
 });
 
 
-export const User = sequelize.define('User', {
+export const User = sequelize.define('Users', {
   nombre: { type: DataTypes.STRING(500) },
   apellido: { type: DataTypes.STRING(500) },
   correo: { type: DataTypes.STRING(500) },
@@ -17,7 +17,7 @@ export const User = sequelize.define('User', {
   rol: { type: DataTypes.STRING(500) },
   extension: { type: DataTypes.INTEGER }
 }, {
-  tableName: 'users',
+  tableName: 'Users',
   timestamps: false
 });
 
@@ -26,7 +26,7 @@ export const Machine = sequelize.define('Machine', {
   id_user: { type: DataTypes.INTEGER },
   nro_maquina: { type: DataTypes.INTEGER, field: 'nro de la maquina' }
 }, {
-  tableName: 'machines',
+  tableName: 'Machine',
   timestamps: false
 });
 
@@ -42,7 +42,7 @@ export const Report = sequelize.define('Report', {
   clave_acceso_windows: { type: DataTypes.INTEGER, field: 'clave de acceso windows' },
   fecha: { type: DataTypes.DATEONLY }
 }, {
-  tableName: 'report',
+  tableName: 'Report',
   timestamps: false
 });
 
@@ -51,7 +51,7 @@ export const ReportUser = sequelize.define('ReportUser', {
   id_user: { type: DataTypes.INTEGER },
   id_report: { type: DataTypes.INTEGER },
 }, {
-  tableName: 'report/users',
+  tableName: 'ReportUser',
   timestamps: false
 });
 
@@ -63,7 +63,7 @@ export const ReportCase = sequelize.define('ReportCase', {
   resolucion: { type: DataTypes.STRING(500), field: 'resolucion ' },
   tiempo: { type: DataTypes.TIME }
 }, {
-  tableName: 'reportcase',
+  tableName: 'ReportCase',
   timestamps: false
 });
 
@@ -71,7 +71,7 @@ export const ReportCase = sequelize.define('ReportCase', {
 export const Specialization = sequelize.define('Specialization', {
   nombre: { type: DataTypes.STRING(500) }
 }, {
-  tableName: 'specialization',
+  tableName: 'Specialization',
   timestamps: false
 });
 
@@ -80,7 +80,7 @@ export const SpecializationUsers = sequelize.define('SpecializationUsers', {
   id_user: { type: DataTypes.INTEGER },
   id_specia: { type: DataTypes.INTEGER }
 }, {
-  tableName: 'specialization/Users',
+  tableName: 'SpecializationUsers',
   timestamps: false
 });
 

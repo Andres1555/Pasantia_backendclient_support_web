@@ -21,11 +21,6 @@ export const MachineService = {
     return destroyed;
   },
 
-  deleteByNro: async (nro) => {
-    const destroyed = await MachineRepository.deleteByNro(nro);
-    if (!destroyed) throw new Error("Máquina no encontrada para eliminar por nro");
-    return destroyed;
-  },
 };
 
 export default MachineService;

@@ -36,11 +36,6 @@ async function deleteById(id) {
   return destroyed;
 }
 
-async function deleteByNro(nro) {
-  if (nro === undefined || nro === null) return 0;
-  const destroyed = await Machine.destroy({ where: { nro_maquina: nro } });
-  return destroyed;
-}
 
 export const MachineRepository = {
   getAll,
@@ -48,5 +43,5 @@ export const MachineRepository = {
   createMachine,
   updateById,
   deleteById,
-  deleteByNro,
+  
 };
